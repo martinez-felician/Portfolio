@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brainiac Memory Game | Fabian Martinez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────── -->
+<nav class="navbar navbar-expand-lg sticky-top site-nav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FM</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Page Hero ─────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <a href="index.html" class="btn-back-custom">
+      <i class="bi bi-arrow-left"></i> Back to Projects
+    </a>
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <span class="project-tag mb-3 d-inline-block" style="background:rgba(14,165,233,.15); color:#38bdf8;">C++ · Windows API · Game Dev</span>
+        <h1>Brainiac (Memory Game)</h1>
+        <p class="lead">A memory card-matching game built in C++. One of the first games I built, Brainiac was a foundational experience in game engine integration, state management, and OOP design.</p>
+        <a href="https://github.com/Fabian00M/Brainiac.git" target="_blank" rel="noopener" class="btn-github-custom">
+          <i class="bi bi-github"></i> View Source Code
+        </a>
+      </div>
+      <div class="col-lg-6">
+        <img src="images/match.jpeg" alt="Brainiac Memory Game" class="page-hero-img">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Content ────────────────────────────── -->
+<section class="content-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <h3 class="section-label">What I Learned</h3>
+        <dl class="skills-dl">
+          <dt>C++ &amp; Object-Oriented Programming</dt>
+          <dd>Built the game using classes and objects. One of the first projects where I applied OOP concepts in a game context.</dd>
+
+          <dt>Windows API</dt>
+          <dd>Worked with Windows-specific functions (HINSTANCE, HWND, HDC) to manage the game window and rendering.</dd>
+          <dd>Handled Windows messages for paint events and window lifecycle.</dd>
+
+          <dt>Game Loop &amp; Frame Rate Management</dt>
+          <dd>Structured a game loop to update card flip animations and rendering at a consistent frame rate.</dd>
+
+          <dt>Graphics &amp; Rendering</dt>
+          <dd>Loaded and rendered bitmap card faces and card backs, managing flip animations.</dd>
+
+          <dt>Game Engine Utilization</dt>
+          <dd>Integrated the shared game engine, learning to initialize resources and set up the game environment from scratch.</dd>
+
+          <dt>Input Handling</dt>
+          <dd>Handled mouse click input to select and flip cards on the game board.</dd>
+
+          <dt>Collision Detection &amp; Match Logic</dt>
+          <dd>Detected matching pairs of cards using bitmap comparison and handled game win conditions.</dd>
+
+          <dt>Game State Management</dt>
+          <dd>Managed card states (face-down, face-up, matched), tracking progress and handling game-over and win screens.</dd>
+        </dl>
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar-card">
+          <h4>Project Info</h4>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Date:</strong> May 2024</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Type:</strong> Game Development</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:1rem;"><strong style="color:var(--dark-2);">Stack:</strong> C++, Windows API</p>
+          <a href="https://github.com/Fabian00M/Brainiac.git" target="_blank" rel="noopener" class="btn-github-custom w-100 justify-content-center">
+            <i class="bi bi-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <span>© 2024 Fabian Martinez</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/fabian-martinez-camargo-32357427b" target="_blank" rel="noopener">
+          <i class="bi bi-linkedin me-1"></i>LinkedIn
+        </a>
+        <a href="mailto:fabianmartinezcamargo81@gmail.com">
+          <i class="bi bi-envelope me-1"></i>Email
+        </a>
+        <span><i class="bi bi-whatsapp me-1"></i>+57 (319) 206-4090</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmmbgxkiMr+9iS1YDKl5bDXQP5" crossorigin="anonymous"></script>
+</body>
+</html>

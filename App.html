@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiTennis App | Fabian Martinez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────── -->
+<nav class="navbar navbar-expand-lg sticky-top site-nav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FM</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Page Hero ─────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <a href="index.html" class="btn-back-custom">
+      <i class="bi bi-arrow-left"></i> Back to Projects
+    </a>
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <span class="project-tag mb-3 d-inline-block" style="background:rgba(14,165,233,.15); color:#38bdf8;">Android · Java · PHP · MySQL</span>
+        <h1>TiTennis Mobile App</h1>
+        <p class="lead">An Android app that connects tennis players and helps them find hitting partners in their area. Built as my Senior Project using Android Studio, Java, PHP, and MySQL.</p>
+      </div>
+      <div class="col-lg-6">
+        <img src="images/TiTenis/login1.jpeg" alt="TiTennis App" class="page-hero-img">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── About the Project ──────────────────── -->
+<section class="content-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <h3 class="section-label">About the Project</h3>
+        <p>For my Senior Project I decided to build an app that would connect tennis players and help them find a partner to play with. Throughout this process I had to learn full-stack mobile development on my own — from designing the database schema in MySQL Workbench to building the Android UI in Java and creating the PHP backend API that ties them together.</p>
+        <p>The experience taught me how to manage a full product lifecycle: planning features, setting up the backend, designing the UI screens, and testing the full flow end-to-end.</p>
+
+        <h3 class="section-label mt-4">Skills &amp; Technologies</h3>
+        <dl class="skills-dl">
+          <dt>Android Development</dt>
+          <dd>Built the full Android UI using Java in Android Studio, including login, signup, home, player map, and user profile screens.</dd>
+
+          <dt>Backend with PHP &amp; MySQL</dt>
+          <dd>Designed the database schema in MySQL Workbench and wrote PHP scripts to handle API requests from the app — user authentication, registration, and player lookup.</dd>
+
+          <dt>Full Stack Architecture</dt>
+          <dd>Connected a native Android frontend to a remote PHP/MySQL backend, learning how to structure RESTful endpoints and handle network requests in Java.</dd>
+
+          <dt>Project Management</dt>
+          <dd>Managed the full development lifecycle independently — planning, designing, implementing, testing, and presenting the final project.</dd>
+        </dl>
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar-card">
+          <h4>Project Info</h4>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Date:</strong> May 2024</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Type:</strong> Senior Project</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin:0;"><strong style="color:var(--dark-2);">Stack:</strong> Java, PHP, MySQL, Android Studio</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Screenshot Gallery ─────────────────── -->
+<section class="gallery-section">
+  <div class="container">
+    <h3 class="section-label">Screenshots</h3>
+    <div class="row g-3 row-cols-2 row-cols-md-3 row-cols-lg-4">
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TiTenis/login.jpeg" alt="Login Screen">
+          <p class="gallery-caption">Login</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TiTenis/signup.jpg" alt="Sign Up Screen">
+          <p class="gallery-caption">Sign Up</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TiTenis/home.jpeg" alt="Home Screen">
+          <p class="gallery-caption">Home</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TiTenis/homefunction.jpeg" alt="Home Functionality">
+          <p class="gallery-caption">Home — Functionality</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TiTenis/map.jpeg" alt="Player Map">
+          <p class="gallery-caption">Player Map</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TiTenis/mapfunction.jpeg" alt="Map Functionality">
+          <p class="gallery-caption">Map — Functionality</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TiTenis/user.jpeg" alt="User Profile">
+          <p class="gallery-caption">User Profile</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TiTenis/signup1.jpeg" alt="Sign Up Step 2">
+          <p class="gallery-caption">Sign Up — Step 2</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <span>© 2024 Fabian Martinez</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/fabian-martinez-camargo-32357427b" target="_blank" rel="noopener">
+          <i class="bi bi-linkedin me-1"></i>LinkedIn
+        </a>
+        <a href="mailto:fabianmartinezcamargo81@gmail.com">
+          <i class="bi bi-envelope me-1"></i>Email
+        </a>
+        <span><i class="bi bi-whatsapp me-1"></i>+57 (319) 206-4090</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmmbgxkiMr+9iS1YDKl5bDXQP5" crossorigin="anonymous"></script>
+</body>
+</html>

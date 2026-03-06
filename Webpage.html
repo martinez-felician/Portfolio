@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website | Fabian Martinez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────── -->
+<nav class="navbar navbar-expand-lg sticky-top site-nav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FM</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Page Hero ─────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <a href="index.html" class="btn-back-custom">
+      <i class="bi bi-arrow-left"></i> Back to Projects
+    </a>
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <span class="project-tag mb-3 d-inline-block" style="background:rgba(14,165,233,.15); color:#38bdf8;">HTML · CSS · Bootstrap 5</span>
+        <h1>Portfolio Website</h1>
+        <p class="lead">You are looking at it! After completing my Web Development certificate on Udemy, I applied that knowledge to design and build this portfolio from scratch using HTML, CSS, and Bootstrap 5.</p>
+      </div>
+      <div class="col-lg-6">
+        <img src="images/WebPage.jpeg" alt="Portfolio Website" class="page-hero-img">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Content ────────────────────────────── -->
+<section class="content-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <h3 class="section-label">About the Project</h3>
+        <p style="font-size:.9rem; color:var(--text); line-height:1.75;">After completing my Web Development certificate on Udemy, I wanted to apply my new skills to a real project. I chose to build a personal portfolio — a site that could showcase all of my university projects and serve as my professional online presence.</p>
+        <p style="font-size:.9rem; color:var(--text); line-height:1.75;">The design process gave me freedom to explore Bootstrap's grid system, component library, and responsive utilities. I focused on making the site clean, readable, and easy to navigate — good UI/UX principles I picked up through the course.</p>
+
+        <h3 class="section-label mt-4">Skills &amp; Technologies</h3>
+        <dl class="skills-dl">
+          <dt>HTML5 &amp; Semantic Markup</dt>
+          <dd>Structured all pages with semantic HTML5 elements for readability and accessibility.</dd>
+
+          <dt>CSS3 &amp; Custom Styling</dt>
+          <dd>Wrote custom CSS including CSS variables, animations, and responsive layout rules to go beyond what Bootstrap provides out of the box.</dd>
+
+          <dt>Bootstrap 5</dt>
+          <dd>Used Bootstrap's grid, navbar, card, and utility classes to build a fully responsive, mobile-first layout.</dd>
+
+          <dt>UI &amp; UX Design</dt>
+          <dd>Made design decisions around typography, spacing, color contrast, and visual hierarchy to create a professional and user-friendly experience.</dd>
+
+          <dt>Multi-page Architecture</dt>
+          <dd>Organized content across multiple linked pages (About, individual project pages) with a consistent navigation structure.</dd>
+        </dl>
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar-card">
+          <h4>Project Info</h4>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Date:</strong> 2024 — Ongoing</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Type:</strong> Web Development</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin:0;"><strong style="color:var(--dark-2);">Stack:</strong> HTML, CSS, Bootstrap 5</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <span>© 2024 Fabian Martinez</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/fabian-martinez-camargo-32357427b" target="_blank" rel="noopener">
+          <i class="bi bi-linkedin me-1"></i>LinkedIn
+        </a>
+        <a href="mailto:fabianmartinezcamargo81@gmail.com">
+          <i class="bi bi-envelope me-1"></i>Email
+        </a>
+        <span><i class="bi bi-whatsapp me-1"></i>+57 (319) 206-4090</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmmbgxkiMr+9iS1YDKl5bDXQP5" crossorigin="anonymous"></script>
+</body>
+</html>
