@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennis Analyst | Fabian Martinez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────── -->
+<nav class="navbar navbar-expand-lg sticky-top site-nav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FM</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Page Hero ─────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <a href="index.html" class="btn-back-custom">
+      <i class="bi bi-arrow-left"></i> Back to Projects
+    </a>
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <span class="project-tag mb-3 d-inline-block" style="background:rgba(34,197,94,.12); color:#22c55e;">Python · Flask · SQLite · JavaScript · PWA</span>
+        <h1>Tennis Analyst</h1>
+        <p class="lead">A full-stack web app to track tennis match statistics in real time, analyze performance, and generate personalized 3-day practice plans based on your weaknesses. Deployed on PythonAnywhere and installable as a PWA on iPhone.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="https://martinezfelician.pythonanywhere.com" target="_blank" rel="noopener" class="btn-primary-custom">
+            <i class="bi bi-box-arrow-up-right me-2"></i>Live App
+          </a>
+          <a href="https://github.com/martinez-felician/tennis-analist" target="_blank" rel="noopener" class="btn-outline-custom">
+            <i class="bi bi-github me-2"></i>GitHub
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img src="images/TennisAnalyst.png" alt="Tennis Analyst" class="page-hero-img">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── About the Project ──────────────────── -->
+<section class="content-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <h3 class="section-label">About the Project</h3>
+        <p>Tennis Analyst was built to solve a real problem — tracking match performance manually is difficult in the middle of a game, and without data it's hard to know what to actually practice. I built this app to track every point in real time, log winners and errors by shot type, and automatically generate a targeted practice plan at the end of each match.</p>
+        <p>The app handles full tennis scoring rules including deuce, advantage, tiebreaks (first to 7 or 10), and configurable match formats (Best of 1/3/5). After the match, the Insights tab analyzes your stats and produces a personalized 3-day practice plan with specific drills, durations, and coaching cues.</p>
+
+        <h3 class="section-label mt-4">Skills &amp; Technologies</h3>
+        <dl class="skills-dl">
+          <dt>Flask Backend &amp; REST API</dt>
+          <dd>Built a Python Flask server with RESTful API routes for user authentication, match saving, and match history retrieval. Passwords are hashed using Werkzeug's PBKDF2 implementation.</dd>
+
+          <dt>SQLite Database</dt>
+          <dd>Designed a normalized SQLite schema with a users table and a matches table. Match config, stats, and result are stored as JSON, allowing flexible querying and replay.</dd>
+
+          <dt>Vanilla JavaScript Frontend</dt>
+          <dd>The entire UI is built with plain HTML, CSS, and JavaScript — no frameworks. State is managed through global variables and a multi-step point-entry flow that handles the full rules of tennis scoring.</dd>
+
+          <dt>Progressive Web App (PWA)</dt>
+          <dd>Added a Web App Manifest, service worker, and iOS meta tags so the app can be installed directly to an iPhone home screen from Safari — full screen, no browser bar.</dd>
+
+          <dt>Deployment</dt>
+          <dd>Deployed to PythonAnywhere using a WSGI configuration. The project is version-controlled on GitHub with continuous deployment via git pull.</dd>
+        </dl>
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar-card">
+          <h4>Project Info</h4>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Date:</strong> 2025</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Type:</strong> Personal Project</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Stack:</strong> Python, Flask, SQLite, JavaScript, HTML/CSS</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:1rem;"><strong style="color:var(--dark-2);">Hosted:</strong> PythonAnywhere</p>
+          <a href="https://martinezfelician.pythonanywhere.com" target="_blank" rel="noopener" class="btn-primary-custom d-block text-center mb-2">
+            <i class="bi bi-box-arrow-up-right me-2"></i>Live App
+          </a>
+          <a href="https://github.com/martinez-felician/tennis-analist" target="_blank" rel="noopener" class="btn-outline-custom d-block text-center">
+            <i class="bi bi-github me-2"></i>Source Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Screenshots ────────────────────────── -->
+<section class="gallery-section">
+  <div class="container">
+    <h3 class="section-label">Screenshots</h3>
+    <div class="row g-3 row-cols-2 row-cols-md-3 row-cols-lg-4">
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TennisAnalyst/login.png" alt="Login Screen">
+          <p class="gallery-caption">Login</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TennisAnalyst/setup.png" alt="Match Setup">
+          <p class="gallery-caption">Match Setup</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TennisAnalyst/tracker.png" alt="Point Tracker">
+          <p class="gallery-caption">Point Tracker</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TennisAnalyst/stats.png" alt="Match Stats">
+          <p class="gallery-caption">Match Stats</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TennisAnalyst/insights.png" alt="Practice Plan">
+          <p class="gallery-caption">Practice Plan</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="gallery-card">
+          <img src="images/TennisAnalyst/profile.png" alt="User Profile">
+          <p class="gallery-caption">Profile</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <span>© 2024 Fabian Martinez</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/fabian-martinez-camargo-32357427b" target="_blank" rel="noopener">
+          <i class="bi bi-linkedin me-1"></i>LinkedIn
+        </a>
+        <a href="mailto:fabianmartinezcamargo81@gmail.com">
+          <i class="bi bi-envelope me-1"></i>Email
+        </a>
+        <span><i class="bi bi-whatsapp me-1"></i>+57 (319) 206-4090</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmmbgxkiMr+9iS1YDKl5bDXQP5" crossorigin="anonymous"></script>
+</body>
+</html>
