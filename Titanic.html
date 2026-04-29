@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titanic Survival Analysis | Fabian Martinez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ── Navbar ─────────────────────────────── -->
+<nav class="navbar navbar-expand-lg sticky-top site-nav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FM</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Page Hero ─────────────────────────── -->
+<div class="page-hero">
+  <div class="container">
+    <a href="index.html" class="btn-back-custom">
+      <i class="bi bi-arrow-left"></i> Back to Projects
+    </a>
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <span class="project-tag mb-3 d-inline-block" style="background:rgba(245,158,11,.12); color:#d97706;">R · R Markdown · ggplot2 · Data Analysis</span>
+        <h1>Titanic Survival Analysis</h1>
+        <p class="lead">An exploratory data analysis of the Titanic dataset written in R Markdown. Investigates the factors that influenced passenger survival — including class, gender, and age — through statistical summaries and data visualizations.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="https://github.com/martinez-felician/Titanic-Report" target="_blank" rel="noopener" class="btn-outline-custom">
+            <i class="bi bi-github me-2"></i>GitHub
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img src="images/Titanic.png" alt="Titanic Survival Analysis" class="page-hero-img">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── About the Project ──────────────────── -->
+<section class="content-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <h3 class="section-label">About the Project</h3>
+        <p>This report analyzes the Titanic passenger dataset to understand what factors determined survival during the disaster. Using R Markdown, the analysis combines narrative text, code, and visualizations into a single reproducible document exported as both HTML and PDF.</p>
+        <p>The report explores survival rates across passenger class, gender, and age groups, uncovering patterns such as the strong influence of gender and socioeconomic class on survival probability. All visualizations were built with ggplot2 and the analysis follows a structured EDA workflow.</p>
+
+        <h3 class="section-label mt-4">Skills &amp; Technologies</h3>
+        <dl class="skills-dl">
+          <dt>R Markdown</dt>
+          <dd>Authored a fully reproducible report in R Markdown, combining code chunks, prose, and output into a single document. Rendered to both HTML and PDF formats.</dd>
+
+          <dt>ggplot2 &amp; Data Visualization</dt>
+          <dd>Created bar charts, histograms, and grouped plots to visualize survival distributions across multiple passenger attributes.</dd>
+
+          <dt>Data Wrangling</dt>
+          <dd>Cleaned and transformed the Titanic dataset — handling missing values, recoding variables, and filtering subsets for targeted analysis.</dd>
+
+          <dt>Statistical Analysis</dt>
+          <dd>Applied descriptive statistics and cross-tabulations to quantify survival rates by group, supporting evidence-based conclusions.</dd>
+        </dl>
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar-card">
+          <h4>Project Info</h4>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Date:</strong> 2025</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:.5rem;"><strong style="color:var(--dark-2);">Type:</strong> Data Analysis Report</p>
+          <p style="font-size:.85rem; color:var(--text-muted); margin-bottom:1rem;"><strong style="color:var(--dark-2);">Stack:</strong> R, R Markdown, ggplot2</p>
+          <a href="https://github.com/martinez-felician/Titanic-Report" target="_blank" rel="noopener" class="btn-outline-custom d-block text-center">
+            <i class="bi bi-github me-2"></i>Source Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <span>© 2024 Fabian Martinez</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/fabian-martinez-camargo-32357427b" target="_blank" rel="noopener">
+          <i class="bi bi-linkedin me-1"></i>LinkedIn
+        </a>
+        <a href="mailto:fabianmartinezcamargo81@gmail.com">
+          <i class="bi bi-envelope me-1"></i>Email
+        </a>
+        <span><i class="bi bi-whatsapp me-1"></i>+57 (319) 206-4090</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmmbgxkiMr+9iS1YDKl5bDXQP5" crossorigin="anonymous"></script>
+</body>
+</html>
