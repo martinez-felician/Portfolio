@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennis Analyst Demo | Fabian Martinez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+.demo-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.25rem}
+.note{border-left:4px solid var(--primary);background:var(--bg-alt);padding:.75rem 1rem;border-radius:0 var(--radius) var(--radius) 0;font-size:.9rem}
+.score{display:grid;grid-template-columns:1fr repeat(4,56px);gap:.25rem .5rem;align-items:center;font-variant-numeric:tabular-nums}
+.score .hd{font-size:.7rem;text-transform:uppercase;color:var(--text-muted);text-align:center}
+.score .nm{font-weight:600;color:var(--dark)}
+.score .c{text-align:center;font-size:1.15rem}
+.score .pt{font-weight:800;color:var(--primary)}
+.btn-pt{border:1px solid var(--border);background:#fff;border-radius:.5rem;padding:.45rem .6rem;font-size:.85rem;font-weight:600;color:var(--dark);width:100%;transition:var(--transition)}
+.btn-pt:hover{border-color:var(--primary);color:var(--primary)}
+.btn-pt.win{background:#16a34a;border-color:#16a34a;color:#fff}.btn-pt.win:hover{background:#15803d;color:#fff}
+.btn-pt.lose{background:#fff;border-color:#fca5a5;color:#b91c1c}.btn-pt.lose:hover{background:#fee2e2}
+.shot.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+table.stats{width:100%;font-size:.85rem}table.stats th{font-size:.7rem;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+table.stats td,table.stats th{padding:.25rem .35rem;text-align:center}table.stats td:first-child,table.stats th:first-child{text-align:left}
+.day{border:1px solid var(--border);border-radius:var(--radius);padding:1rem;height:100%;background:var(--bg-alt)}
+.day h6{color:var(--primary);font-weight:700}
+.day li{margin-bottom:.4rem;font-size:.85rem}
+.chip{display:inline-block;font-size:.7rem;padding:.1rem .5rem;border-radius:999px;background:#dbeafe;color:#1e40af;margin-left:.25rem}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top site-nav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FM</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <a href="index.html" class="btn-back-custom"><i class="bi bi-arrow-left"></i> Back to Projects</a>
+    <span class="project-tag mb-3 d-inline-block" style="background:rgba(34,197,94,.12); color:#22c55e;">Python · Flask · SQLite · JavaScript · PWA</span>
+    <h1>Tennis Analyst: Interactive Demo</h1>
+    <p class="lead">Log points like you would in a real match, see the score and stats update, then generate a 3-day practice plan from your weakest shots.</p>
+    <div class="d-flex flex-wrap gap-3 mt-3">
+      <a href="https://fymc.pythonanywhere.com/login" target="_blank" rel="noopener" class="btn-primary-custom"><i class="bi bi-box-arrow-up-right me-2"></i>Open the real app</a>
+      <a href="https://github.com/martinez-felician/tennis-analist" target="_blank" rel="noopener" class="btn-outline-custom"><i class="bi bi-github me-2"></i>GitHub</a>
+    </div>
+  </div>
+</div>
+
+<section class="content-section">
+  <div class="container">
+    <div class="note mb-4"><strong>About this demo.</strong> This is a simplified version that runs entirely in your browser with no account and no saved data. The real Tennis Analyst is a Flask and SQLite app with user accounts, match history and a fuller set of insights. The practice-plan rules here only illustrate the idea.</div>
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="demo-card mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-2"><h5 class="mb-0">Scoreboard</h5><span class="small text-muted">Best of 3 sets · tiebreak at 6-6</span></div>
+          <div class="score" id="score"></div>
+          <div id="status" class="small text-muted mt-2"></div>
+        </div>
+        <div class="demo-card">
+          <h5>Log a point</h5>
+          <div class="small text-muted mb-1">1. Choose the shot</div>
+          <div class="row g-2 mb-3" id="shots"></div>
+          <div class="small text-muted mb-1">2. What happened?</div>
+          <div class="row g-2">
+            <div class="col-6 col-md-4"><button class="btn-pt win" data-o="winner">Winner</button></div>
+            <div class="col-6 col-md-4"><button class="btn-pt win" data-o="ace">Ace (serve)</button></div>
+            <div class="col-6 col-md-4"><button class="btn-pt lose" data-o="ue">Unforced error</button></div>
+            <div class="col-6 col-md-4"><button class="btn-pt lose" data-o="df">Double fault</button></div>
+            <div class="col-6 col-md-4"><button class="btn-pt" data-o="oppwin">Opponent winner</button></div>
+            <div class="col-6 col-md-4"><button class="btn-pt" data-o="undo">Undo last</button></div>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            <button id="btnSample" class="btn-outline-custom"><i class="bi bi-lightning me-2"></i>Load a sample match</button>
+            <button id="btnReset" class="btn-outline-custom"><i class="bi bi-arrow-counterclockwise me-2"></i>Reset</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="demo-card">
+          <h5>Match stats</h5>
+          <table class="stats"><thead><tr><th>Shot</th><th>Winners</th><th>Errors</th><th>Error rate</th></tr></thead><tbody id="stats"></tbody></table>
+          <div class="small text-muted mt-2" id="totals"></div>
+          <button id="btnPlan" class="btn-primary-custom border-0 mt-3 w-100"><i class="bi bi-clipboard-check me-2"></i>Generate 3-day practice plan</button>
+        </div>
+      </div>
+    </div>
+    <div id="plan" class="mt-4"></div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <span>© 2026 Fabian Martinez</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/fabian-martinez-camargo-32357427b" target="_blank" rel="noopener">
+          <i class="bi bi-linkedin me-1"></i>LinkedIn
+        </a>
+        <a href="mailto:fabianmartinezcamargo81@gmail.com">
+          <i class="bi bi-envelope me-1"></i>Email
+        </a>
+        <span><i class="bi bi-telephone me-1"></i>(417) 726-2765</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmmbgxkiMr+9iS1YDKl5bDXQP5" crossorigin="anonymous"></script>
+<script>
+
+(function(){
+  var SHOTS=['Serve','Forehand','Backhand','Volley'];
+  var DRILLS={
+    Serve:[['Serve targets: 20 first serves to each box corner','15 min','Toss slightly in front, finish through the ball'],['Second-serve routine: 15 kick or slice serves, no misses allowed','10 min','Aim for height over the net, not speed']],
+    Forehand:[['Crosscourt rally to a target zone, 25 balls in a row','15 min','Turn the shoulders early and finish high'],['Inside-out forehand with a feeder, 3 sets of 10','12 min','Hit through the contact point']],
+    Backhand:[['Crosscourt backhand rally, 25 balls in a row','15 min','Prepare early and keep the head still at contact'],['Backhand down-the-line from a slow feed, 3 sets of 10','12 min','Step into the shot, shoulder behind the ball']],
+    Volley:[['Volley-to-volley at the net, 3 rounds of 2 minutes','10 min','Short backswing, punch with a firm wrist'],['Approach shot then volley finish, 15 repetitions','12 min','Move forward on the approach, split step before the volley']]
+  };
+  var $=function(id){return document.getElementById(id)};
+  var st,shot='Forehand';
+  function fresh(){return {pts:[],hist:[]}}
+  st=fresh();
+  // ---- scoring: replays the point list so Undo is trivial ----
+  function compute(pts){
+    var s={sets:[],games:[0,0],pts:[0,0],tb:false,setsWon:[0,0],done:false,server:0,gameCount:0};
+    pts.forEach(function(w){ if(s.done)return; pointWon(s,w)});
+    return s;
+  }
+  function pointWon(s,w){
+    var l=1-w; s.pts[w]++;
+    if(s.tb){
+      if(s.pts[w]>=7&&s.pts[w]-s.pts[l]>=2){endGame(s,w)}
+    } else if(s.pts[w]>=4&&s.pts[w]-s.pts[l]>=2){endGame(s,w)}
+  }
+  function endGame(s,w){
+    var l=1-w; s.games[w]++; s.pts=[0,0]; s.tb=false;
+    var g=s.games;
+    if(g[0]===6&&g[1]===6){s.tb=true;return}
+    var setOver=(g[w]>=6&&g[w]-g[l]>=2)||(g[w]===7&&g[l]===6);
+    if(setOver){s.sets.push(g.slice());s.setsWon[w]++;s.games=[0,0];if(s.setsWon[w]===2)s.done=true}
+  }
+  // tiebreak finish: 7-6 set recorded when tb ends
+  var _endGame=endGame;
+  endGame=function(s,w){
+    if(s.tb){var l=1-w;s.games[w]++;s.pts=[0,0];s.tb=false;s.sets.push(s.games.slice());s.setsWon[w]++;s.games=[0,0];if(s.setsWon[w]===2)s.done=true;return}
+    _endGame(s,w);
+  };
+  function ptsLabel(s,i){
+    if(s.tb)return String(s.pts[i]);
+    var a=s.pts[i],b=s.pts[1-i];
+    if(a>=3&&b>=3){if(a===b)return '40';return a>b?'Ad':'—'}
+    return ['0','15','30','40'][Math.min(a,3)];
+  }
+  function render(){
+    var s=compute(st.pts.map(function(p){return p.w}));
+    var names=['You','Opponent'],h='<div class="hd"></div><div class="hd">Set 1</div><div class="hd">Set 2</div><div class="hd">Set 3</div><div class="hd">Game</div>';
+    for(var i=0;i<2;i++){
+      h+='<div class="nm">'+names[i]+'</div>';
+      for(var k=0;k<3;k++){
+        var v=''; if(k<s.sets.length)v=s.sets[k][i]; else if(k===s.sets.length&&!s.done)v=s.games[i];
+        h+='<div class="c">'+v+'</div>';
+      }
+      h+='<div class="c pt">'+(s.done?'':ptsLabel(s,i))+'</div>';
+    }
+    $('score').innerHTML=h;
+    $('status').textContent=s.done?('Match over: '+(s.setsWon[0]>s.setsWon[1]?'you win':'opponent wins')+' '+Math.max(s.setsWon[0],s.setsWon[1])+' sets to '+Math.min(s.setsWon[0],s.setsWon[1])+'.'):(s.tb?'Tiebreak in progress (first to 7, win by 2).':st.pts.length+' points logged.');
+    // stats
+    var rows='',tw=0,te=0;
+    SHOTS.forEach(function(n){var c=count(n);tw+=c.w;te+=c.e;var tot=c.w+c.e;rows+='<tr><td>'+n+'</td><td>'+c.w+'</td><td>'+c.e+'</td><td>'+(tot?Math.round(c.e/tot*100)+'%':'-')+'</td></tr>'});
+    $('stats').innerHTML=rows;
+    var df=st.pts.filter(function(p){return p.o==='df'}).length, ow=st.pts.filter(function(p){return p.o==='oppwin'}).length;
+    $('totals').textContent='Winners '+tw+' · Unforced errors '+te+' · Double faults '+df+' · Opponent winners '+ow;
+  }
+  function count(n){var w=0,e=0;st.pts.forEach(function(p){if(p.shot!==n)return;if(p.o==='winner'||p.o==='ace')w++;if(p.o==='ue'||p.o==='df')e++});return {w:w,e:e}}
+  // shot picker
+  var sh='';SHOTS.forEach(function(n){sh+='<div class="col-6 col-md-3"><button class="btn-pt shot'+(n===shot?' active':'')+'" data-s="'+n+'">'+n+'</button></div>'});
+  $('shots').innerHTML=sh;
+  $('shots').addEventListener('click',function(e){var b=e.target.closest('[data-s]');if(!b)return;shot=b.getAttribute('data-s');[].forEach.call(document.querySelectorAll('.shot'),function(x){x.classList.toggle('active',x===b)})});
+  function log(o){
+    var s=compute(st.pts.map(function(p){return p.w}));if(s.done){$('status').textContent='Match over. Reset to start a new one.';return}
+    if(o==='undo'){st.pts.pop();render();return}
+    var use=shot;
+    if(o==='ace'||o==='df')use='Serve';
+    var w=(o==='winner'||o==='ace')?0:1;
+    st.pts.push({w:w,o:o,shot:use});render();
+  }
+  document.querySelector('.col-lg-7').addEventListener('click',function(e){var b=e.target.closest('[data-o]');if(b)log(b.getAttribute('data-o'))});
+  // seeded sample match: weaker backhand, a few double faults
+  function rng(seed){return function(){seed=(seed*1664525+1013904223)%4294967296;return seed/4294967296}}
+  $('btnSample').addEventListener('click',function(){
+    st=fresh();var r=rng(7);
+    var kinds=[['winner','Forehand',0.22],['winner','Backhand',0.10],['winner','Volley',0.08],['ace','Serve',0.06],
+      ['ue','Forehand',0.06],['ue','Backhand',0.13],['ue','Serve',0.01],['ue','Volley',0.03],['df','Serve',0.04],['oppwin','Forehand',0.12],['oppwin','Backhand',0.12]];
+    var tot=kinds.reduce(function(a,k){return a+k[2]},0),n=0;
+    while(n<110){var x=r()*tot,acc=0,k;for(var i=0;i<kinds.length;i++){acc+=kinds[i][2];if(x<=acc){k=kinds[i];break}}
+      var s=compute(st.pts.map(function(p){return p.w}));if(s.done)break;
+      st.pts.push({w:(k[0]==='winner'||k[0]==='ace')?0:1,o:k[0],shot:k[1]});n++}
+    render();
+  });
+  $('btnReset').addEventListener('click',function(){st=fresh();$('plan').innerHTML='';render()});
+  // ---- practice plan (simplified rules) ----
+  $('btnPlan').addEventListener('click',function(){
+    var total=st.pts.length;
+    if(total<10){$('plan').innerHTML='<div class="note">Log at least 10 points (or load the sample match) so the plan has something to work with.</div>';return}
+    var rank=SHOTS.map(function(n){var c=count(n);return {n:n,e:c.e,w:c.w,rate:(c.w+c.e)?c.e/(c.w+c.e):0}}).filter(function(x){return x.e+x.w>0}).sort(function(a,b){return b.e-a.e||b.rate-a.rate});
+    var df=st.pts.filter(function(p){return p.o==='df'}).length;
+    var w1=rank[0].n,w2=(rank[1]||rank[0]).n;
+    var day=function(t,items){return '<div class="col-md-4"><div class="day"><h6>'+t+'</h6><ul class="ps-3 mb-0">'+items.map(function(d){return '<li>'+d[0]+'<span class="chip">'+d[1]+'</span><br><span class="text-muted">Cue: '+d[2]+'</span></li>'}).join('')+'</ul></div></div>'};
+    var d1=DRILLS[w1].slice();
+    var d2=DRILLS[w2===w1?'Forehand':w2].slice(0,1).concat(df>=3||w1==='Serve'?DRILLS.Serve.slice(1):[['Warm-up: 5 minutes of mini-tennis, then rally 15 balls crosscourt','10 min','Keep the shots deep and relaxed']]);
+    var d3=[['Play 3 practice games starting every point with your best serve target','25 min','Use the pattern that worked in your match'],['Play out 10 points focusing only on '+w1.toLowerCase()+' placement','15 min','Aim 3 feet inside the lines']];
+    $('plan').innerHTML='<h4 class="mb-1">Your 3-day plan</h4><p class="text-muted small">Biggest weakness: <b>'+w1+'</b> ('+rank[0].e+' errors). Next: <b>'+w2+'</b>.'+(df>=3?' Double faults: '+df+', so a second-serve drill is included.':'')+'</p><div class="row g-3">'+day('Day 1: '+w1+' focus',d1)+day('Day 2: '+w2+(df>=3?' and serve':' and warm-up'),d2)+day('Day 3: Match play',d3)+'</div>';
+    $('plan').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  render();
+})();
+</script>
+</body>
+</html>

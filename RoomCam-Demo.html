@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoomCam Demo | Fabian Martinez</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+
+.demo-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1.25rem}
+.stage{position:relative;background:#0f172a;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9}
+.stage canvas{width:100%;height:100%;display:block}
+.badge-state{position:absolute;top:.75rem;left:.75rem;padding:.25rem .75rem;border-radius:999px;font-size:.8rem;font-weight:600;color:#fff;background:#475569}
+.badge-state.watching{background:#16a34a}.badge-state.motion{background:#dc2626}
+.badge-sim{position:absolute;top:.75rem;right:.75rem;padding:.25rem .6rem;border-radius:6px;font-size:.7rem;font-weight:700;color:#0f172a;background:#fbbf24;display:none}
+.log{max-height:220px;overflow:auto;font-family:'Fira Code',monospace;font-size:.8rem}
+.log div{padding:.2rem 0;border-bottom:1px dashed var(--border)}
+.phone{max-width:300px;margin:0 auto;border:8px solid #0f172a;border-radius:28px;background:#e2e8f0;padding:1rem;min-height:170px}
+.notif{background:#fff;border-radius:14px;padding:.6rem .8rem;box-shadow:var(--shadow);margin-bottom:.6rem;font-size:.85rem;animation:pop .25s ease}
+.notif b{display:block;color:var(--dark)}
+@keyframes pop{from{transform:translateY(-8px);opacity:0}to{transform:none;opacity:1}}
+.note{border-left:4px solid var(--primary);background:var(--bg-alt);padding:.75rem 1rem;border-radius:0 var(--radius) var(--radius) 0;font-size:.9rem}
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top site-nav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">FM</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <a href="index.html" class="btn-back-custom"><i class="bi bi-arrow-left"></i> Back to Projects</a>
+    <span class="project-tag mb-3 d-inline-block">Python · FastAPI · OpenCV · WebRTC · PWA</span>
+    <h1>RoomCam: Live Demo</h1>
+    <p class="lead">Try the motion-detection idea behind RoomCam right here in your browser. Use your camera or a simulated one, change the settings, and watch the alert a phone would receive.</p>
+    <div class="d-flex flex-wrap gap-3 mt-3">
+      <a href="https://github.com/martinez-felician/roomcam" target="_blank" rel="noopener" class="btn-primary-custom"><i class="bi bi-github me-2"></i>View the real project</a>
+    </div>
+  </div>
+</div>
+
+<section class="content-section">
+  <div class="container">
+    <div class="note mb-4">
+      <strong>About this demo.</strong> This is a simplified browser version of the detection step. The real RoomCam runs on a laptop with Python and OpenCV, sends alerts with Web Push, and streams live video to the phone with WebRTC. Here everything runs in your browser: no video is recorded, uploaded or sent anywhere.
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="stage">
+          <canvas id="view" width="640" height="360"></canvas>
+          <span id="state" class="badge-state">Stopped</span>
+          <span id="sim" class="badge-sim">SIMULATED CAMERA</span>
+        </div>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          <button id="btnCam" class="btn-primary-custom border-0"><i class="bi bi-camera-video me-2"></i>Use my camera</button>
+          <button id="btnSim" class="btn-outline-custom"><i class="bi bi-play-circle me-2"></i>Use simulated camera</button>
+          <button id="btnStop" class="btn-outline-custom"><i class="bi bi-stop-circle me-2"></i>Stop</button>
+        </div>
+        <div id="msg" class="small text-muted mt-2"></div>
+      </div>
+      <div class="col-lg-4">
+        <div class="demo-card mb-3">
+          <h5 class="mb-3">Settings</h5>
+          <label class="form-label small mb-0">Sensitivity: <span id="sensVal">60</span></label>
+          <input id="sens" type="range" class="form-range" min="1" max="100" value="60">
+          <label class="form-label small mb-0">Wait between alerts: <span id="coolVal">4</span>s</label>
+          <input id="cool" type="range" class="form-range" min="1" max="15" value="4">
+          <label class="form-label small mb-0">Frames to confirm: <span id="confVal">3</span></label>
+          <input id="conf" type="range" class="form-range" min="1" max="8" value="3">
+          <label class="form-label small mb-1">Detection zone</label>
+          <select id="zone" class="form-select form-select-sm">
+            <option value="full">Full frame</option>
+            <option value="center">Center only</option>
+            <option value="left">Left half</option>
+            <option value="right">Right half</option>
+          </select>
+          <div class="small text-muted mt-3">Changed area now: <b id="pct">0.0</b>%</div>
+        </div>
+        <div class="phone">
+          <div class="small text-center text-muted mb-2">Phone (simulated)</div>
+          <div id="phone"><div class="small text-muted text-center">No alerts yet</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-4 mt-1">
+      <div class="col-lg-6">
+        <div class="demo-card"><h5>Event log</h5><div id="log" class="log"><div class="text-muted">Start a camera to begin.</div></div></div>
+      </div>
+      <div class="col-lg-6">
+        <div class="demo-card">
+          <h5>How the detection works</h5>
+          <ol class="small mb-0">
+            <li>Each frame is shrunk to 160×90 and turned to grayscale.</li>
+            <li>It is compared with a slowly updating background image.</li>
+            <li>Pixels that changed more than the sensitivity threshold are counted inside the chosen zone.</li>
+            <li>An alert fires only after several frames in a row confirm the motion, and then waits before the next one.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <span>© 2026 Fabian Martinez</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/fabian-martinez-camargo-32357427b" target="_blank" rel="noopener">
+          <i class="bi bi-linkedin me-1"></i>LinkedIn
+        </a>
+        <a href="mailto:fabianmartinezcamargo81@gmail.com">
+          <i class="bi bi-envelope me-1"></i>Email
+        </a>
+        <span><i class="bi bi-telephone me-1"></i>(417) 726-2765</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmmbgxkiMr+9iS1YDKl5bDXQP5" crossorigin="anonymous"></script>
+<script>
+
+(function(){
+  var W=160,H=90,view=document.getElementById('view'),vctx=view.getContext('2d');
+  var small=document.createElement('canvas');small.width=W;small.height=H;var sctx=small.getContext('2d',{willReadFrequently:true});
+  var src=null,stream=null,video=null,raf=0,bg=null,streak=0,lastAlert=0,simT=0,running=false,mode='';
+  var $=function(id){return document.getElementById(id)};
+  ['sens','cool','conf'].forEach(function(id){$(id).addEventListener('input',function(){$(id+'Val').textContent=$(id).value})});
+  function setState(t,c){var e=$('state');e.textContent=t;e.className='badge-state '+(c||'')}
+  function log(t){var l=$('log');if(l.firstChild&&l.firstChild.className==='text-muted')l.innerHTML='';var d=document.createElement('div');d.textContent=t;l.insertBefore(d,l.firstChild);while(l.children.length>40)l.removeChild(l.lastChild)}
+  function notify(){
+    var p=$('phone');if(p.firstChild&&p.firstChild.className&&p.firstChild.className.indexOf('text-muted')>-1)p.innerHTML='';
+    var n=document.createElement('div');n.className='notif';n.innerHTML='<b>RoomCam</b>Motion detected at '+new Date().toLocaleTimeString();
+    p.insertBefore(n,p.firstChild);while(p.children.length>3)p.removeChild(p.lastChild);
+  }
+  function stop(){running=false;cancelAnimationFrame(raf);if(stream){stream.getTracks().forEach(function(t){t.stop()});stream=null}
+    if(video){video.srcObject=null;video=null}bg=null;streak=0;$('sim').style.display='none';setState('Stopped','');$('pct').textContent='0.0'}
+  function zoneRect(){var z=$('zone').value;
+    if(z==='center')return [W*0.25|0,H*0.25|0,W*0.75|0,H*0.75|0];
+    if(z==='left')return [0,0,W/2|0,H];
+    if(z==='right')return [W/2|0,0,W,H];
+    return [0,0,W,H]}
+  function drawSim(ctx,w,h,t){
+    var g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,'#1e293b');g.addColorStop(1,'#334155');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+    ctx.fillStyle='#475569';ctx.fillRect(w*0.08,h*0.55,w*0.3,h*0.4);ctx.fillStyle='#64748b';ctx.fillRect(w*0.62,h*0.2,w*0.28,h*0.5);
+    var cycle=(t%9000)/9000; // a "person" crosses the room for part of each cycle
+    if(cycle>0.35&&cycle<0.8){var k=(cycle-0.35)/0.45;var x=w*(0.05+0.8*k);
+      ctx.fillStyle='#f59e0b';ctx.beginPath();ctx.arc(x,h*0.38,h*0.07,0,7);ctx.fill();ctx.fillStyle='#38bdf8';ctx.fillRect(x-h*0.06,h*0.45,h*0.12,h*0.3)}
+  }
+  function frame(ts){
+    if(!running)return;
+    if(mode==='cam'){vctx.drawImage(video,0,0,view.width,view.height)}
+    else{drawSim(vctx,view.width,view.height,ts)}
+    sctx.drawImage(view,0,0,W,H);
+    var d=sctx.getImageData(0,0,W,H).data,gray=new Float32Array(W*H),i;
+    for(i=0;i<W*H;i++){gray[i]=0.299*d[i*4]+0.587*d[i*4+1]+0.114*d[i*4+2]}
+    if(!bg){bg=gray.slice()}
+    var thr=60-($('sens').value/100)*50+5; // higher sensitivity -> lower threshold
+    var z=zoneRect(),changed=0,total=(z[2]-z[0])*(z[3]-z[1]),minX=W,minY=H,maxX=0,maxY=0,x,y;
+    for(y=z[1];y<z[3];y++)for(x=z[0];x<z[2];x++){i=y*W+x;
+      if(Math.abs(gray[i]-bg[i])>thr){changed++;if(x<minX)minX=x;if(x>maxX)maxX=x;if(y<minY)minY=y;if(y>maxY)maxY=y}}
+    for(i=0;i<W*H;i++){bg[i]=bg[i]*0.92+gray[i]*0.08}
+    var pct=changed/total*100;$('pct').textContent=pct.toFixed(1);
+    var moving=pct>1.2;
+    streak=moving?streak+1:0;
+    var sx=view.width/W,sy=view.height/H;
+    if(z[2]-z[0]<W||z[3]-z[1]<H){vctx.strokeStyle='rgba(56,189,248,.9)';vctx.setLineDash([6,4]);vctx.lineWidth=2;vctx.strokeRect(z[0]*sx,z[1]*sy,(z[2]-z[0])*sx,(z[3]-z[1])*sy);vctx.setLineDash([])}
+    if(moving&&maxX>minX){vctx.strokeStyle='#ef4444';vctx.lineWidth=3;vctx.strokeRect(minX*sx,minY*sy,(maxX-minX)*sx,(maxY-minY)*sy)}
+    var now=Date.now();
+    if(streak>=+$('conf').value){setState('Motion!','motion');
+      if(now-lastAlert>$('cool').value*1000){lastAlert=now;log(new Date().toLocaleTimeString()+'  motion alert  ('+pct.toFixed(1)+'% of zone changed)');notify()}}
+    else if(!moving){setState('Watching','watching')}
+    raf=requestAnimationFrame(frame);
+  }
+  function begin(m){running=true;mode=m;lastAlert=0;setState('Watching','watching');raf=requestAnimationFrame(frame)}
+  $('btnSim').addEventListener('click',function(){stop();$('msg').textContent='Simulated scene: a figure walks across the room every few seconds.';$('sim').style.display='block';begin('sim');log('Simulated camera started')});
+  $('btnStop').addEventListener('click',function(){stop();log('Stopped')});
+  $('btnCam').addEventListener('click',function(){
+    stop();
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){$('msg').textContent='Your browser does not allow camera access here. Try the simulated camera.';return}
+    navigator.mediaDevices.getUserMedia({video:{width:640,height:360},audio:false}).then(function(s){
+      stream=s;video=document.createElement('video');video.muted=true;video.playsInline=true;video.srcObject=s;
+      video.play().then(function(){$('msg').textContent='Camera on. Video stays in this tab and is never recorded or uploaded.';begin('cam');log('Camera started')});
+    }).catch(function(){$('msg').textContent='Camera permission was not granted. You can try the simulated camera instead.'});
+  });
+  window.addEventListener('pagehide',stop);
+})();
+
+</script>
+</body>
+</html>
