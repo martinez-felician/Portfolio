@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Mrs+Saint+Delafield&display=swap');
+
+/* Black & gold theme — loaded after style.css */
+:root{
+  --primary:#d8b878; --primary-dark:#e6c78a; --accent:#d8b878;
+  --dark:#0c0b0a; --dark-2:#ece6d9;
+  --text:#cfc7b6; --text-muted:#a39a86;
+  --bg:#0c0b0a; --bg-alt:#141210; --border:#2a2620;
+  --radius:2px;
+  --shadow-sm:none; --shadow:none; --shadow-lg:0 12px 40px rgba(0,0,0,.6);
+  --serif:'Cormorant Garamond',Georgia,serif;
+}
+body{background:#0c0b0a;color:var(--text)}
+h1,h2,h3,.section-title,.page-hero h1,.contact-section h2,.about-page-content h2.edu-title{font-family:var(--serif);font-weight:500;color:#ece6d9}
+.site-nav{background:rgba(12,11,10,.96);border-bottom:1px solid #2a2620;padding:1.1rem 0}
+.site-nav .navbar-brand{font-family:var(--serif);font-weight:500;font-size:1.6rem;color:#d8b878!important;letter-spacing:2px}
+.site-nav .nav-link{color:#a39a86!important;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;border-radius:0}
+.site-nav .nav-link:hover{color:#d8b878!important;background:transparent}
+.navbar-toggler-icon{filter:invert(1) sepia(1) saturate(2)}
+
+/* Hero (index) */
+.hero{background:#0c0b0a;animation:none;min-height:auto;padding:3rem 0 0;display:block}
+.hero::before{display:none}
+.hero-eyebrow{color:#d8b878;font-size:.75rem;letter-spacing:4px}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.6rem,9vw,7rem);line-height:.9;letter-spacing:-2px;color:#ece6d9}
+.hero h1 em{font-style:italic;font-weight:400;color:#d8b878}
+.hero-rule{width:72px;height:1px;background:#d8b878;margin:1.9rem 0}
+.hero .hero-subtitle{color:#a39a86;font-size:1.05rem;max-width:440px;margin-top:0}
+.hero-copy{padding:2rem 0 5rem;position:relative;z-index:2}
+.hero-photo{position:relative;min-height:660px;overflow:hidden}
+.hero-glow{position:absolute;left:50%;top:52%;width:620px;height:620px;transform:translate(-50%,-50%);background:radial-gradient(circle,#5a431f66,transparent 68%)}
+.hero-cutout{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:760px;width:auto;max-width:none;filter:drop-shadow(0 0 26px #d8b87833);-webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 99%);mask-image:linear-gradient(to bottom,#000 70%,transparent 99%)}
+.hero-sign{position:absolute;right:3%;bottom:150px;transform:rotate(-8deg);z-index:3;display:flex;flex-direction:column;align-items:flex-end}
+.hero-sign span:first-child{font-family:'Mrs Saint Delafield','Cormorant Garamond',cursive;font-size:170px;line-height:.8;color:#e6c78a;text-shadow:0 2px 18px #00000099}
+.hero-sign span:last-child{display:block;width:150px;height:1px;margin-top:6px;background:linear-gradient(90deg,transparent,#d8b878)}
+@media(max-width:991px){
+  .hero-photo{min-height:520px}.hero-cutout{height:560px}.hero-sign{bottom:110px}.hero-sign span:first-child{font-size:120px}
+  .hero-copy{padding-bottom:2rem}
+}
+
+/* Buttons */
+.btn-primary-custom,.btn-contact{background:transparent;color:#d8b878!important;border:1px solid #d8b878;border-radius:0;padding:.95rem 2.1rem;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;font-weight:500}
+.btn-primary-custom:hover,.btn-contact:hover{background:#d8b878;color:#0c0b0a!important;box-shadow:none;transform:none}
+.btn-outline-custom{border:1px solid #3a342a;color:#a39a86!important;border-radius:0;padding:.95rem 2.1rem;font-size:.75rem;letter-spacing:3px;text-transform:uppercase}
+.btn-outline-custom:hover{border-color:#d8b878;color:#d8b878!important;background:transparent}
+.btn-github-custom{background:transparent;border:1px solid #d8b878;color:#d8b878!important;border-radius:0}
+.btn-github-custom:hover{background:#d8b878;color:#0c0b0a!important}
+.btn-back-custom{color:#a39a86!important}.btn-back-custom:hover{color:#d8b878!important}
+
+/* Sections */
+.section-eyebrow{color:#d8b878;letter-spacing:4px;font-weight:500}
+.section-title{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.5px}
+.section-divider{width:72px;height:1px;background:#d8b878;border-radius:0}
+.about-section,.skills-section{background:#0c0b0a}
+.projects-section{background:#100e0c}
+.about-intro{color:#a39a86}
+.credential-card,.skill-group,.project-card,.gallery-card,.sidebar-card{background:#141210;border:1px solid #2a2620;border-radius:0}
+.credential-card:hover,.project-card:hover,.gallery-card:hover{border-color:#d8b878;box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.credential-icon{background:transparent;border:1px solid #3a342a;color:#d8b878;border-radius:0}
+.credential-card h4,.project-card-body h3,.sidebar-highlight h6{color:#ece6d9}
+.project-card-body h3{font-family:var(--serif);font-size:1.45rem;font-weight:500}
+.project-card-img{filter:saturate(.85) brightness(.92)}
+.project-tag{color:#d8b878;background:transparent;border:1px solid #3a342a;border-radius:0;letter-spacing:.1em}
+.project-card-link,.sidebar-archive a{color:#d8b878}
+.project-card-link:hover,.sidebar-archive a:hover{color:#e6c78a}
+.skill-group h4{color:#d8b878}
+.skill-list li,.hobbies-list li{background:transparent;border:1px solid #3a342a;border-radius:0;color:#cfc7b6}
+.contact-section{background:#0c0b0a;border-top:1px solid #2a2620}
+.contact-section h2{font-size:clamp(2.2rem,5vw,3.6rem)}
+.contact-section p{color:#a39a86}
+.site-footer{background:#080706;border-top:1px solid #2a2620;color:#8a8270}
+.site-footer a{color:#a39a86}.site-footer a:hover{color:#d8b878}
+
+/* Inner pages */
+.page-hero{background:#0c0b0a;border-bottom:1px solid #2a2620}
+.page-hero h1{font-size:clamp(2.4rem,5vw,3.8rem);letter-spacing:-.5px}
+.page-hero .lead{color:#a39a86}
+.page-hero-img{border-radius:0;box-shadow:0 20px 50px rgba(0,0,0,.6);border:1px solid #2a2620}
+.content-section{background:#0c0b0a}.gallery-section{background:#100e0c}
+.content-section h3.section-label,.gallery-section h3.section-label,.about-section-label{color:#d8b878;border-bottom:1px solid #2a2620}
+.skills-dl dt,.about-page-content dt{color:#ece6d9}
+.skills-dl dd,.about-page-content dd,.gallery-card .gallery-caption{color:#a39a86}
+.about-page-content p{color:#a39a86}
+.about-page-content .honors-table td{border-bottom:1px solid #2a2620;color:#cfc7b6}
+.about-page-content .honors-table td:last-child{color:#a39a86}
+.about-page-content hr{border-color:#2a2620}
+.code-section{background:#080706}.code-section pre{background:#100e0c;border-color:#2a2620;border-radius:0}
+
+/* Demo pages */
+.btn-demo{background:transparent!important;border-radius:0!important;border:1px solid #d8b878!important;color:#d8b878!important;letter-spacing:2px;text-transform:uppercase;font-size:.75rem!important}
+.btn-demo:hover{background:#d8b878!important;color:#0c0b0a!important}
+.demo-card{background:#141210!important;border:1px solid #2a2620!important;border-radius:0!important;color:#cfc7b6}
+.demo-card h2,.demo-card h3,.demo-card h4,.demo-card h5,.demo-card label,.demo-card b,.demo-card strong{color:#ece6d9}
+.note{background:#141210!important;border-left:3px solid #d8b878!important;color:#a39a86}
+.stage{background:#080706!important;border:1px solid #2a2620;border-radius:0!important}
+.phone{background:#1a1713!important;border-color:#2a2620!important}
+.notif{background:#241f18!important;color:#cfc7b6}.notif b{color:#ece6d9!important}
+.log div{border-bottom-color:#2a2620!important}
+.form-control,.form-select{background:#0c0b0a;border-color:#3a342a;color:#ece6d9;border-radius:0}
+.form-range::-webkit-slider-thumb{background:#d8b878}
+.table{--bs-table-bg:transparent;--bs-table-color:#cfc7b6;--bs-table-border-color:#2a2620}
+.badge.bg-primary,.btn-primary{background:#d8b878!important;border-color:#d8b878!important;color:#0c0b0a!important}
+.text-muted{color:#a39a86!important}
+.bg-white,.bg-light{background:#141210!important}
+.text-dark{color:#ece6d9!important}
+html,body{overflow-x:hidden}
